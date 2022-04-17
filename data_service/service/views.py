@@ -46,7 +46,7 @@ class QueryData(viewsets.GenericViewSet, mixins.CreateModelMixin):
                     query = query | Q(**temp)
             
             
-            homes = Home.objects.filter(query)
+            homes = Home.objects.filter(query).prefetch_related('address')
 
             print(homes.count())
 
