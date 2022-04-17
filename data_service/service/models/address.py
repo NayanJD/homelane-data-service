@@ -2,7 +2,7 @@ from django.db import models
 
 class Address(models.Model):
 
-    home = models.ForeignKey("Home", related_name="address", primary_key=True, on_delete=models.CASCADE)
+    home = models.OneToOneField("Home", related_name="address", primary_key=True, on_delete=models.CASCADE)
 
     street = models.TextField()
     city = models.TextField()

@@ -3,7 +3,7 @@ from django.db.models import Q
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from data_service.service.models.home import Home
-from .serializers import QuerySerializer
+from .serializers import QuerySerializer, HomeSerializer
 
 class QueryData(viewsets.GenericViewSet, mixins.CreateModelMixin):
     queryset = Home.objects.all()
@@ -31,7 +31,6 @@ class QueryData(viewsets.GenericViewSet, mixins.CreateModelMixin):
                     operator = predicate['operator']
                     value= predicate['value']
 
-                    # final_predicates[f'{column_name}__{operator}'] = value
                     temp = {f'{column_name}__{operator}': value}
 
                     query = query & Q(**temp)
@@ -42,7 +41,6 @@ class QueryData(viewsets.GenericViewSet, mixins.CreateModelMixin):
                     operator = predicate['operator']
                     value= predicate['value']
 
-                    # final_predicates[f'{column_name}__{operator}'] = value
                     temp = {f'{column_name}__{operator}': value}
 
                     query = query | Q(**temp)
@@ -52,6 +50,6 @@ class QueryData(viewsets.GenericViewSet, mixins.CreateModelMixin):
 
             print(homes.count())
 
-        return Response()
+        return Response(HomeSerializer(homes, many=True).data)
 
 
