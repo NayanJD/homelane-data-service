@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField(verbose_name='date')),
                 ('price', models.FloatField()),
                 ('bedrooms', models.IntegerField()),
-                ('bathrooms', models.IntegerField()),
+                ('bathrooms', models.FloatField()),
                 ('sqft_living', models.FloatField()),
                 ('sqft_lot', models.FloatField()),
                 ('floors', models.IntegerField()),
